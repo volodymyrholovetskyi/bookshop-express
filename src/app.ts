@@ -5,8 +5,9 @@ import dotenv from "dotenv";
 import { errorHandler } from "./shared/exceptions/globalErrorHandler";
 import log4js, { Configuration } from "log4js";
 import { config } from "./shared/config";
+import path from "path";
 
-dotenv.config();
+dotenv.config({path: './.env'});
 
 const PORT = process.env.PORT;
 const MONGODB_URL = process.env.MONGODB_URL || "";
