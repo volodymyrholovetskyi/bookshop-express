@@ -1,1 +1,0 @@
-{"version":3,"file":"bookQueryDto.js","sourceRoot":"","sources":["../../../../src/catalog/controllers/dto/bookQueryDto.ts"],"names":[],"mappings":";;;AAAA,MAAa,YAAY;IAKvB,YAAY,KAA4B;QACtC,IAAI,CAAC,OAAO,GAAG,KAAK,CAAC,OAAO,CAAC;QAC7B,IAAI,CAAC,IAAI,GAAG,KAAK,CAAC,IAAI,IAAI,CAAC,CAAC;QAC5B,IAAI,CAAC,IAAI,GAAG,KAAK,CAAC,IAAI,IAAI,EAAE,CAAC;IAC/B,CAAC;CACF;AAVD,oCAUC"}
