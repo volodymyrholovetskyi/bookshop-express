@@ -3,15 +3,12 @@
 # dependencies
 .idea
 /.idea
-nyc_output
-/.nyc_output
-dist
-/.dist
+/nyc_output
+/dist
 /node_modules
 /.pnp
 .pnp.js
-imgs
-/.imgs
+/imgs
 
 # testing
 /coverage
