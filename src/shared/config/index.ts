@@ -1,7 +1,3 @@
-export const httpClient = {
-    url_api: "http://localhost:8080/api/orders",  
-}
-
 export const config = {
     log4js: {
         appenders: {

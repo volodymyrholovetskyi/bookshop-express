@@ -1,15 +1,16 @@
 import { HttpClientTimeoutError } from "../../shared/exceptions/httpClientTimoutError";
 import { HttpClientError } from "../../shared/exceptions/httpClientError";
-import { httpClient } from "../../shared/config";
 import log4js from "log4js";
 
 const TIMEOUT_ERROR = "TimeoutError";
-const TIMEOUT_DURATION = 2000;
+const TIMEOUT = 2000;
+const API_ULR = process.env.API_URL;
+ 
 
 export const featchOrder = async (orderId?: number): Promise<Response> => {
 
-  return await fetch(`${httpClient.url_api}/${orderId}`, {
-    signal: AbortSignal.timeout(TIMEOUT_DURATION),
+  return await fetch(`${API_ULR}/${orderId}`, {
+    signal: AbortSignal.timeout(TIMEOUT),
     method: "GET",
     headers: {
       "content-type": "application/json;charset=UTF-8",

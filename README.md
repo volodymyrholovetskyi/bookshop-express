@@ -34,3 +34,5 @@ To compare the performance, I took screenshots:
 - Integration Test
 
 ## Set-up
+- run mongodb in docker container (docker-compose up -d)
+- run app (npm run start)
