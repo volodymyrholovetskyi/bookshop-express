@@ -3,19 +3,18 @@ import { HttpClientError } from "../../shared/exceptions/httpClientError";
 import log4js from "log4js";
 
 const TIMEOUT_ERROR = "TimeoutError";
-const TIMEOUT = 2000;
 const API_URL = process.env.API_URL;
+const REQUEST = {
+  signal: AbortSignal.timeout(2000),
+  method: "GET",
+  headers: {
+    "content-type": "application/json;charset=UTF-8",
+  }
+}
  
 
 export const fetchOrder = async (orderId?: number): Promise<Response> => {
-console.log("Testing...")
-  return await fetch(`${API_URL}/${orderId}`, {
-    signal: AbortSignal.timeout(TIMEOUT),
-    method: "GET",
-    headers: {
-      "content-type": "application/json;charset=UTF-8",
-    },
-  })
+  return await fetch(`${API_URL}/${orderId}`, REQUEST)
     .then((result) => result)
     .catch((err) => {
       if (err.name === TIMEOUT_ERROR) {
