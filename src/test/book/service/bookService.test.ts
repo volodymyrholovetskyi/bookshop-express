@@ -119,8 +119,8 @@ describe("Book Service", () => {
       datePublished: new Date("2008-08-01"),
     };
 
-    const aStub = sandbox.mock(client)
-    aStub.expects("fetchOrder")
+    const mock = sandbox.mock(client)
+    mock.expects("fetchOrder")
       .withArgs(1)
       .once()
       .returns({ ok: true })

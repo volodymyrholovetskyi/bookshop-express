@@ -47,8 +47,8 @@ describe("Controller Book", () => {
       id: bookIdAfterSave,
     });
 
-    const aStub = sandbox.mock(client)
-    aStub.expects("fetchOrder")
+    const mock = sandbox.mock(client)
+    mock.expects("fetchOrder")
       .withArgs(1)
       .once()
       .returns({ ok: true })
