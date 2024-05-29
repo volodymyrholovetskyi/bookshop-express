@@ -7,6 +7,7 @@ import { ObjectId } from "mongodb";
 import * as bookService from "src/catalog/services/bookService";
 import { BookQueryDto } from "src/catalog/controllers/dto/bookQueryDto";
 import { OrderIdsDto } from "src/catalog/controllers/dto/orderIdsDto";
+const client = require("src/catalog/client/httpClient")
 
 const { expect } = chai;
 
@@ -108,6 +109,7 @@ describe("Book Service", () => {
 
   it("addBook should create a new book and return its id", (done) => {
     //given
+    const myApi = {featchOrder: function(){}}
     const bookDto: BookDto = {
       title: "Clean Code",
       description: "Write good quality readable and reusable code",
@@ -117,6 +119,12 @@ describe("Book Service", () => {
       datePublished: new Date("2008-08-01"),
     };
 
+    const aStub = sandbox.mock(client)
+    aStub.expects("fetchOrder")
+      .withArgs(1)
+      .once()
+      .returns({ ok: true })
+    
     //expect
     bookService
       .addBook(bookDto)

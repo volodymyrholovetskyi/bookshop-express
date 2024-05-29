@@ -6,6 +6,7 @@ import chaiHttp from "chai-http";
 import routers from "src/shared/routers/bookRouter";
 import Book from "src/catalog/models/book";
 import { ObjectId } from "mongodb";
+const client = require("src/catalog/client/httpClient")
 
 const { expect } = chai;
 
@@ -45,6 +46,12 @@ describe("Controller Book", () => {
       ...book,
       id: bookIdAfterSave,
     });
+
+    const aStub = sandbox.mock(client)
+    aStub.expects("fetchOrder")
+      .withArgs(1)
+      .once()
+      .returns({ ok: true })
 
     chai.request(app)
       .post(basePath)
@@ -107,7 +114,7 @@ describe("Controller Book", () => {
     ]
 
     const findOneStub = sandbox.stub(Book, "find")
-    findOneStub.resolves(books);
+    findOneStub.resolves();
 
     chai.request(app)
       .get(`${basePath}?orderId=1`)

@@ -6,7 +6,7 @@ import Book from "../models/book";
 import { BookQueryDto } from "../controllers/dto/bookQueryDto";
 import { BookDetailsDto } from "../controllers/dto/bookDetailsDto";
 import { BookDtoMapper } from "../mapper/bookDtoMapper";
-import { featchOrder } from "../client/httpClient";
+import { fetchOrder } from "../client/httpClient";
 import { OrderNotFoundError } from "../../shared/exceptions/orderNotFoundError";
 
 export const addBook = async (bookDto: BookDto): Promise<string> => {
@@ -41,7 +41,8 @@ export const findBooksByOrderId = async (
 ): Promise<BookDetailsDto[]> => {
   const { orderId, size, from } = query;
 
-  const books = await Book.find({ orderId: orderId })
+  const books = await Book
+    .find({ orderId: orderId })
     .sort({ datePublished: -1 })
     .skip(from)
     .limit(size);
@@ -50,7 +51,7 @@ export const findBooksByOrderId = async (
 };
 
 const validateOrder = async (orderId?: number) => {
-  const res = await featchOrder(orderId);
+  const res = await fetchOrder(orderId);
   if (!res.ok) {
     throw new OrderNotFoundError(orderId);
   }

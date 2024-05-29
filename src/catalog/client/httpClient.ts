@@ -4,12 +4,12 @@ import log4js from "log4js";
 
 const TIMEOUT_ERROR = "TimeoutError";
 const TIMEOUT = 2000;
-const API_ULR = process.env.API_URL;
+const API_URL = process.env.API_URL;
  
 
-export const featchOrder = async (orderId?: number): Promise<Response> => {
-
-  return await fetch(`${API_ULR}/${orderId}`, {
+export const fetchOrder = async (orderId?: number): Promise<Response> => {
+console.log("Testing...")
+  return await fetch(`${API_URL}/${orderId}`, {
     signal: AbortSignal.timeout(TIMEOUT),
     method: "GET",
     headers: {
