@@ -22,17 +22,21 @@ To compare the performance, I took screenshots:
 
    ![](./plan_query/use_index.png)
 
-   As you can see, the execution time of a query using indexes gives a greater increase in performance.
+   As you can see, the `executionTimeMillis` of a query using indexes gives a greater increase in performance.
 
 ## Technologies
 
-- Nodejs (Express)
+- Express
+
+- TypeScript
+
+- HTTP Client
 
 - MongoDB
 
-- Docker
+- Mocha, Chai, Sinon
 
-- Integration Test
+- Docker
 
 ## Set-up
 - run mongodb in docker container (docker-compose up -d)

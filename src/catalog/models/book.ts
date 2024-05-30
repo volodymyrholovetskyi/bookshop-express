@@ -1,5 +1,4 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { text } from "stream/consumers";
 
 export interface IBook extends Document {
   title: String;
