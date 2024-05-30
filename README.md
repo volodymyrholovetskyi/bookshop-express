@@ -39,5 +39,5 @@ To compare the performance, I took screenshots:
 - Docker
 
 ## Set-up
-- run mongodb in docker container (docker-compose up -d)
-- run app (npm run start)
+- run mongodb in docker container, command: `docker-compose up -d`
+- run app, command: `npm run start`
