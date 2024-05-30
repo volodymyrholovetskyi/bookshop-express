@@ -1,4 +1,4 @@
-export class AppError {
+export class ApiError {
     statusCode?: number;
     status?: string;
     message?: string;

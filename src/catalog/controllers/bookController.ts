@@ -55,7 +55,7 @@ const findBooks = async (req: Request, res: Response, next: NextFunction) => {
 const createBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     validate(await validationPipe(BookRequest, req.body));
-
+    
     const book = new BookDto(req.body);
     const id = await addBook({
       ...book,
@@ -81,7 +81,6 @@ const formatError = (validationErrors: ValidationError[]): string => {
       errors.push(JSON.stringify(error.constraints));
     }
   }
-
   return errors.join(", ");
 };
 

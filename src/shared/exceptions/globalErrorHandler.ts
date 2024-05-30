@@ -1,7 +1,7 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import { OrderNotFoundError } from "./orderNotFoundError";
 import { BookValidationError } from "./bookValidationError";
-import { AppError } from "./appError";
+import { ApiError } from "./apiError";
 import httpStatus from "http-status";
 
 export const errorHandler: ErrorRequestHandler = (
@@ -40,5 +40,5 @@ const buildErrorResponse = (
   message: string,
   res: Response
 ) => {
-  return res.status(statusCode).send(new AppError(status, statusCode, message));
+  return res.status(statusCode).send(new ApiError(status, statusCode, message));
 };

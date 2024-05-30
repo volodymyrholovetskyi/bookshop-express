@@ -28,7 +28,7 @@ describe("Controller Book", () => {
     sandbox.restore();
   });
 
-  it("Should save the book", (done) => {
+  it("createBook should save the book", (done) => {
     const bookIdAfterSave = new ObjectId();
     const book = {
       title: "Title",
@@ -61,6 +61,27 @@ describe("Controller Book", () => {
         res.should.have.status(201);
         expect(res.body.id).to.equal(bookIdAfterSave.toString());
 
+        done();
+      });
+  });
+
+  it("createBook should fail validation and return 400 because price is negative", (done) => {
+    const book = {
+      title: "Title",
+      description: "Descripiton",
+      price: -12.99,
+      orderId: 1,
+      available: 100,
+      datePublished: "2024-03-25",
+    };
+
+    chai.request(app)
+      .post(basePath)
+      .send(book)
+      .end((_, res) => {
+        res.should.have.status(400);
+        expect(res.body.message).to.equal({message: {min: "price must not be less than 0"}})
+      
         done();
       });
   });

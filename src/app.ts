@@ -7,7 +7,7 @@ import log4js, { Configuration } from "log4js";
 import { config } from "./shared/config";
 import path from "path";
 
-dotenv.config({path: './.env'});
+dotenv.config({path: path.resolve(__dirname, './.env')});
 
 const PORT = process.env.PORT;
 const MONGODB_URL = process.env.MONGODB_URL || "";

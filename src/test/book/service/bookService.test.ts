@@ -7,7 +7,8 @@ import { ObjectId } from "mongodb";
 import * as bookService from "src/catalog/services/bookService";
 import { BookQueryDto } from "src/catalog/controllers/dto/bookQueryDto";
 import { OrderIdsDto } from "src/catalog/controllers/dto/orderIdsDto";
-const client = require("src/catalog/client/httpClient")
+import { OrderNotFoundError } from "src/shared/exceptions/orderNotFoundError";
+const client = require("src/catalog/client/httpClient");
 
 const { expect } = chai;
 
@@ -106,10 +107,8 @@ describe("Book Service", () => {
       .catch((error: Error) => done(error));
   });
 
-
   it("addBook should create a new book and return its id", (done) => {
     //given
-    const myApi = {featchOrder: function(){}}
     const bookDto: BookDto = {
       title: "Clean Code",
       description: "Write good quality readable and reusable code",
@@ -119,12 +118,9 @@ describe("Book Service", () => {
       datePublished: new Date("2008-08-01"),
     };
 
-    const mock = sandbox.mock(client)
-    mock.expects("fetchOrder")
-      .withArgs(1)
-      .once()
-      .returns({ ok: true })
-    
+    const mock = sandbox.mock(client);
+    mock.expects("fetchOrder").withArgs(1).once().returns({ ok: true });
+
     //expect
     bookService
       .addBook(bookDto)
@@ -142,5 +138,28 @@ describe("Book Service", () => {
         done();
       })
       .catch((error: Error) => done(error));
+  });
+
+  it("addBook should throw exception if order not found", (done) => {
+    //given
+    const bookDto: BookDto = {
+      title: "Clean Code",
+      description: "Write good quality readable and reusable code",
+      orderId: 3,
+      price: 45,
+      available: 50,
+      datePublished: new Date("2008-08-01"),
+    };
+
+    const mock = sandbox.mock(client);
+    mock.expects("fetchOrder").withArgs(3).once().returns({ ok: false });
+
+    //expect
+    bookService
+      .addBook(bookDto)
+      .then(async (id) => done(id))
+      .catch((error: OrderNotFoundError) => expect(error.message).to.equal({message: "Order with ID: 3 not found!"}));
+
+    done();
   });
 });
