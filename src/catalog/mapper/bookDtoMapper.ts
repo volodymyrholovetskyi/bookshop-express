@@ -5,7 +5,7 @@ import { IBook } from "../models/book";
 export class BookDtoMapper {
   static mapToBookDetails = (book: IBook): BookDetailsDto => {
     return {
-      id: book.id,
+      id: book._id,
       orderId: book.orderId,
       price: book.price,
       available: book.available,

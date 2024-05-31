@@ -12,7 +12,7 @@ import { OrderNotFoundError } from "../../shared/exceptions/orderNotFoundError";
 export const addBook = async (bookDto: BookDto): Promise<string> => {
   await validateOrder(bookDto.orderId);
   const book = await BookFactory.createNewBook(bookDto).save();
-  return book.id;
+  return book._id;
 };
 
 export const countBooksForOrderIds = async (

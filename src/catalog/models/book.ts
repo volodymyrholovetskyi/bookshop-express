@@ -37,6 +37,7 @@ const bookShema = new Schema({
 });
 
  bookShema.index( {datePublished: -1} );
+ bookShema.index( {orderId: 1} );
 
 const Book = mongoose.model<IBook>("Book", bookShema);
 
