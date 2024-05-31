@@ -11,7 +11,8 @@ The domain model in the project is described by three entities `Customer`, `Orde
 
 ## Experiments
 
-To avoid sorting all the collection items in memory and to speed up the query, I added an index on the datePublished field.
+To avoid sorting all the collection items in memory and to speed up the query, I added two indexes for the fields: datePublished and orderId.
+For the test, I used 280400 documents and searched for data almost from the middle.
 To compare the performance, I took screenshots:
 
 1. Without Index:
