@@ -36,8 +36,18 @@ const bookShema = new Schema({
   },
 });
 
- bookShema.index( {datePublished: -1} );
- bookShema.index( {orderId: 1} );
+bookShema.index(
+  { orderId: 1 },
+  {name: "index by orderId"}
+);
+
+bookShema.index(
+  {
+    datePublished: -1,
+    orderId: 1,
+  },
+  { name: "index by date and orderId" }
+);
 
 const Book = mongoose.model<IBook>("Book", bookShema);
 

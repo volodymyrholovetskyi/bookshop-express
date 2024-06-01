@@ -41,8 +41,7 @@ export const findBooksByOrderId = async (
 ): Promise<BookDetailsDto[]> => {
   const { orderId, size, from } = query;
 
-  const books = await Book
-    .find({ orderId: orderId })
+  const books = await Book.find({ orderId: orderId })
     .sort({ datePublished: -1 })
     .skip(from)
     .limit(size);
