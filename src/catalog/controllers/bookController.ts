@@ -26,7 +26,7 @@ import log4js from "log4js";
 const countBooks = async (req: Request, res: Response, next: NextFunction) => {
   try {
     validate(await validationPipe(OrderIdsRequest, req.body));
-
+    
     const countBooks = new OrderIdsDto(req.body);
     const books = await countBooksForOrderIds(countBooks);
     return res.status(httpStatus.OK).send(books);

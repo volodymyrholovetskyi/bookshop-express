@@ -45,7 +45,7 @@ describe("Controller Book", () => {
     );
     saveOneStub.resolves({
       ...book,
-      id: bookIdAfterSave,
+      _id: bookIdAfterSave,
     });
 
     const mock = sandbox.mock(client)

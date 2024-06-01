@@ -10,7 +10,8 @@ import { fetchOrder } from "../client/httpClient";
 import { OrderNotFoundError } from "../../shared/exceptions/orderNotFoundError";
 
 export const addBook = async (bookDto: BookDto): Promise<string> => {
-  await validateOrder(bookDto.orderId);
+  const { orderId } = bookDto;
+  await validateOrder(orderId);
   const book = await BookFactory.createNewBook(bookDto).save();
   return book._id;
 };
@@ -45,6 +46,12 @@ export const findBooksByOrderId = async (
     .sort({ datePublished: -1 })
     .skip(from)
     .limit(size);
+  
+    const b = await Book.find({ orderId: orderId })
+    .sort({ datePublished: -1 })
+    .skip(from)
+    .limit(size).explain()
+  console.log(b)
 
   return books.map((book) => BookDtoMapper.mapToBookDetails(book));
 };
@@ -55,3 +62,4 @@ const validateOrder = async (orderId?: number) => {
     throw new OrderNotFoundError(orderId);
   }
 };
+

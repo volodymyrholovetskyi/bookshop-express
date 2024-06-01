@@ -17,11 +17,11 @@ To compare the performance, I took screenshots:
 
 1. Without Index:
 
-   ![](./plan_query/without_index.png)
+   ![](./plan_query/withoutIndex.png)
 
 2. With Index:
 
-   ![](./plan_query/use_index.png)
+   ![](./plan_query/index.png)
 
    As you can see, the `executionTimeMillis` of a query using indexes gives a greater increase in performance.
 

@@ -27,7 +27,7 @@ const typeScriptInAction = new Book({
 
 const effectiveTipeScript = new Book({
   _id: new ObjectId(),
-  title: "TypeScript in Action",
+  title: "Effective TypeScript",
   description:
     "This book guides you through 62 specific ways to improve your use of TypeScript.",
   orderId: 1,
